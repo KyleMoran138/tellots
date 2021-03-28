@@ -1,4 +1,4 @@
-const commander = require('../exchanger')
+import * as commander from '../exchanger';
 
 const speed = () => commander.send('speed?')
 

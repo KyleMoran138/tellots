@@ -1,9 +1,10 @@
-const dgram = require('dgram'),
-    client = dgram.createSocket('udp4'),
-    constants = require('./constants.json'),
-    _local = {
-        state: "idle"
-    }
+import dgram from 'dgram';
+const client = dgram.createSocket('udp4');
+
+const constants = require('./constants.json'),
+_local = {
+    state: "idle"
+}
 
 client.on('message', (msg,info) => {
     _local.state = msg.toString()
@@ -11,7 +12,7 @@ client.on('message', (msg,info) => {
 
 client.bind(constants.ports.response)
 
-const bindStateManagement = (resolve, reject) => {
+const bindStateManagement = (resolve: any, reject: any) => {
     let timeoutId = setTimeout(() => {
         _local.state = "error"
     }, 10000);
@@ -31,7 +32,7 @@ const bindStateManagement = (resolve, reject) => {
 const isIdle = () => _local.state === "idle"
 const isError = () => _local.state === "error"
 
-const transmit = (command) => {
+const transmit = (command: string) => {
     const message = Buffer.from(command)
     client.send(message, 0, message.length, constants.ports.command, constants.hosts.remote, (error) => {
         if(error)
@@ -39,7 +40,7 @@ const transmit = (command) => {
     })
 }
 
-const send = (command) => {
+export const send = (command: string) => {
     return new Promise((resolve, reject) => {
         if(!isIdle())
             reject("error")
