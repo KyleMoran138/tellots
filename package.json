@@ -20,8 +20,8 @@
     "drone",
     "iot"
   ],
-  "repository": "git@github.com:kanekotic/tellojs.git",
-  "author": "kanekotic <alvarojosepl@gmail.com>",
+  "repository": "git@github.com:KyleMoran138/tellots.git",
+  "author": "kylemoran138 <kylemoran.data@gmail.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
